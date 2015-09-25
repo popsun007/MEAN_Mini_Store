@@ -1,0 +1,36 @@
+<div ng-controller="customersController">
+	<form>
+		Customer:<select ng-model="newOrder.name">
+					<option  ng-repeat="customer in customers">{{ customer.name }}</option>
+				</select>
+		Product:<select ng-model="newOrder.product">
+					<option>Shoes</option>
+					<option>Bath towel</option>
+					<option selected>Bike</option>
+				</select>
+		Quantity:<select ng-model="newOrder.quantity">
+					<option selected>1</option>
+					<option>2</option>
+					<option>3</option>
+				</select>
+		<input type="submit" ng-click="addOrder()" value="Add order">
+	</form>
+    <table class="table table-striped table-bordered" style="width: 500px;">
+        <thead>
+            <tr>
+                <th>Customer Name</th>
+                <th>Product</th>
+                <th>Quantity</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="order in orders | filter: filter_name | orderBy: 'created_at' track by $index">
+                <td ng-bind="order.name"></td>
+                <td ng-bind="order.product"></td>
+                <td ng-bind="order.quantity"></td>
+                <td><button class="btn btn-danger btn-xs" ng-click="removeOrder(order)">Remove</button></a></td>
+            </tr>
+        </tbody>
+    </table>
+</div>
