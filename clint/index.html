@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang='en'>
+    <head>
+        <meta charset="utf-8">
+        <title>Customers</title>
+		<script src='https://ajax.googleapis.com/ajax/libs/angularjs/1.3.5/angular.min.js'></script>
+		<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.3.5/angular-route.min.js"></script>
+        <script src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
+
+        <script type="text/javascript" src="/config/route.js"></script>
+        <script type="text/javascript" src="/factories/storeFactory.js"></script>
+		<script type="text/javascript" src="/controllers/storeController.js"></script>
+		<script type="text/javascript" src=""></script>
+		<style type="text/css">
+			.controller
+			{
+				margin: 100px 0 0 200px;
+			};
+			.search
+			{
+				margin-top: 20px;
+			}
+		</style>
+    </head>
+    <body ng-app="myApp">
+        <div class="controller" ng-controller="customersController">
+            <a href="#/">Customer</a> | <a href="#/partial2">Order</a>
+        	
+        	<div class="search">
+        		Search by Name: <input type="text" ng-model="filter_name" placeholder="search name...">
+        	</div>
+        	<div ng-view></div>
+
+        </div>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+    </body>
+</html>
+

@@ -8,7 +8,7 @@ var bodyParser = require('body-parser');
 
 // params over URL
 
-app.use(express.static(path.join(__dirname, "./")));
+app.use(express.static(path.join(__dirname, "./clint")));
 // view folder and view engine
 app.use(bodyParser.json());
 
