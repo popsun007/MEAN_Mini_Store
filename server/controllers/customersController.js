@@ -19,8 +19,13 @@ module.exports = (function(){
 		},
 		create_customer: function(req, res)
 			{
-				var customer = new Customers(req.body);
-				customer.save(function(err, data)
+				capitalize_name = req.body.name.split(' ');
+				for(var i in capitalize_name)
+				{
+					capitalize_name[i] = capitalize_name[i].charAt(0).toUpperCase() + capitalize_name[i].slice(1);
+				}
+				req.body.name = capitalize_name.join(' ');// format name before insert(capitalize)
+				Customers.find({name: req.body.name}, function(err, data)
 				{
 					if(err)
 					{
@@ -28,15 +33,34 @@ module.exports = (function(){
 					}
 					else
 					{
-						res.redirect("/show_customers");
+						if(data.length == 0) // data > 0 means the name already in our database!
+						{
+							var customer = new Customers(req.body);
+							customer.save(function(err, data)
+							{
+								if(err)
+								{
+									console.log(err);
+								}
+								else
+								{
+									res.redirect("/show_customers");
+								}
+							})
+						}
+						else
+						{
+							res.json({error: "Customer already exist!"});
+						}
 					}
-				})
+				});
+
+				
 			},
-		remove_name: function(req, res)
+		delete_customer: function(req, res)
 			{
-				console.log(req.params.id);
-				var name_id = req.params.id.toLowerCase();
-				Names.remove({_id: name_id}, function(err, data)
+				var customer_id = req.params.id;
+				Customers.remove({_id: customer_id}, function(err, data)
 				{
 					if(err)
 					{
@@ -44,7 +68,7 @@ module.exports = (function(){
 					}
 					else
 					{
-						res.redirect('/show_names');
+						res.redirect('/show_customers');
 					}
 				})
 			}

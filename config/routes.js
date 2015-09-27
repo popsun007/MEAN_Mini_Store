@@ -9,8 +9,8 @@ module.exports = function(app)
 		{
 			customersController.display_customers(req, res);
 		});
-		// app.get('/remove/:id', function(req, res)
-		// {
-		// 	nameController.remove_name(req, res);
-		// })
+		app.post('/remove_customer/:id', function(req, res)
+		{
+			customersController.delete_customer(req, res);
+		})
 	}

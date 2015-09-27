@@ -14,13 +14,23 @@ myApp.controller("customersController", function($scope, customerFactory)
 						 	 };
 			customerFactory.addCustomer(customer_repack, function(customers)
 				{
-					$scope.customers = customers;
+					if(customers.error == undefined)
+					{
+						$scope.customers = customers;
+					}
+					else
+					{
+						alert(customers.error);
+					}
 				});
 			$scope.newCustomer={};
 		}
-	$scope.removeCustomer = function(person)
+	$scope.removeCustomer = function(id)
 		{
-			customerFactory.removeCustomer(person);
+			customerFactory.removeCustomer(id, function(remain_customer)
+				{
+					$scope.customers = remain_customer;
+				});
 		}				
 	$scope.removeOrder = function(order)
 		{

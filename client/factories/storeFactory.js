@@ -23,32 +23,17 @@ myApp.factory("customerFactory", function($http)
 					}
 				factory.addCustomer = function(newCustomer, callback)
 					{
-						// var unique = true;
-						// for(var person in customers)
-						// {
-						// 	if(customers[person].name == newCustomer.name)
-						// 	{
-						// 		unique = false;
-						// 	}
-						// }
-						// if(unique)
-						// {
-						// 	var today = new Date().toISOString().slice(0, 10);
-						// 	newCustomer.created_at = today;
-						// 	customers.push(newCustomer);
-						// }
-						// else
-						// {
-						// 	alert("Name exist!");
-						// }
 						$http.post('/add_customer', newCustomer).success(function(output)
 						{
 							callback(output);
 						})
 					}
-				factory.removeCustomer = function(person)
+				factory.removeCustomer = function(id, callback)
 					{
-						customers.splice(customers.indexOf(person), 1);
+						$http.post('/remove_customer/' + id).success(function(output)
+						{
+							callback(output);
+						});
 					}
 				factory.removeOrder = function(order)
 					{
