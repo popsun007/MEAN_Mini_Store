@@ -35,10 +35,7 @@ myApp.controller("customersController", function($scope, customerFactory)
 					$scope.customers = remain_customer;
 				});
 		}				
-	$scope.removeOrder = function(order)
-		{
-			customerFactory.removeOrder(order);
-		}
+
 	$scope.addOrder = function()
 		{
 			orderRepack = {

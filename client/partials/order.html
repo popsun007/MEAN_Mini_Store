@@ -1,14 +1,17 @@
 <div ng-controller="customersController">
 	<form>
 		Customer:<select ng-model="newOrder.name">
+                    <option value="" disabled>Choose a customer</option>
 					<option  ng-repeat="customer in customers">{{ customer.name }}</option>
 				</select>
 		Product:<select ng-model="newOrder.product">
+                    <option value="" disabled>Choose a product</option>
 					<option>Shoes</option>
 					<option>Bath towel</option>
 					<option>Bike</option>
 				</select>
 		Quantity:<select ng-model="newOrder.quantity">
+                    <option value="" disabled>quantity</option>
 					<option>1</option>
 					<option>2</option>
 					<option>3</option>

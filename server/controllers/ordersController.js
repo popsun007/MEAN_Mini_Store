@@ -23,7 +23,8 @@ module.exports = (function(){
 				{
 					if(err)
 					{
-						console.log(err);
+						// res.json({errors: order.errors});
+						console.log(order.errors);
 					}
 					else
 					{
