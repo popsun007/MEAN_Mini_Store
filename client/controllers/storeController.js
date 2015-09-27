@@ -4,7 +4,10 @@ myApp.controller("customersController", function($scope, customerFactory)
 		{
 			$scope.customers = showCustomers;
 		});
-	// $scope.orders = customerFactory.orders;
+	$scope.orders = customerFactory.getOrders(function(displayOrders)
+		{
+			$scope.orders = displayOrders;
+		})
 	$scope.addCustomer = function()
 		{
 			// console.log($scope.newCustomer);
@@ -38,6 +41,15 @@ myApp.controller("customersController", function($scope, customerFactory)
 		}
 	$scope.addOrder = function()
 		{
-			customerFactory.addOrder($scope.newOrder);
+			orderRepack = {
+				cus_name: $scope.newOrder.name,
+				product: $scope.newOrder.product,
+				quantity: $scope.newOrder.quantity,
+				date: Date()
+			}
+			customerFactory.addOrder(orderRepack, function(orders)
+				{
+					$scope.orders = orders;
+				});
 		}
 })

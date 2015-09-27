@@ -35,14 +35,19 @@ myApp.factory("customerFactory", function($http)
 							callback(output);
 						});
 					}
-				factory.removeOrder = function(order)
+				factory.getOrders = function(callback)
 					{
-						orders.splice(orders.indexOf(order), 1);
+						$http.get("/get_orders").success(function(output)
+						{
+							callback(output);
+						})
 					}
-				factory.addOrder = function(newOrder)
+				factory.addOrder = function(newOrder, callback)
 					{
-						console.log(newOrder);
-						orders.push(newOrder);
+						$http.post("/create_order", newOrder).success(function(output)
+						{
+							callback(output);
+						})
 					}
 				return factory;
 				});
